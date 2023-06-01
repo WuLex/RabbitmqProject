@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>RabbitMQ Messages</title>
+  <link href="~/lib/layui/css/layui.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<div class="layui-container" style="margin-top: 20px;">
+
+  <table class="layui-table" id="messageTable" lay-filter="messageTable"></table>
+</div>
+<script src="~/lib/layui/layui.js"></script>
+<script>
+  // 使用 layui 的表格组件渲染消息列表
+  layui.use(['table'], function(){
+    var table = layui.table;
+
+    // 渲染表格
+    table.render({
+      elem: '#messageTable',
+      url: '/RabbitMQ/GetMlist',  // 后端 API 的地址
+      cols: [[
+        //{field: 'messageId', title: 'Message ID'},
+        {field: 'exchange', title: 'Exchange'},
+        {field: 'routing_key', title: 'Routing Key'},
+        {field: 'payload', title: 'Payload'},
+        // 其他需要展示的字段
+      ]],
+      page: true  // 开启分页
+    });
+  });
+</script>
+</body>
+</html>

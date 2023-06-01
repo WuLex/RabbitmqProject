@@ -8,7 +8,20 @@
     </tr>
 </table>
 
-### 查看命令
+
+
+### docker命令
+```bash
+#启动容器
+docker start 5dac4d04d05d
+
+docker ps -a --format "table {{.ID}}   {{.Names}}   {{.Status}}"
+
+
+#进入rabbitmq所在容器内部
+docker exec -it 5dac4d04d05d bash
+```
+### 进入rabbitmq所在容器内部,执行相关查看命令
 ```bash
 
 #查看主机名rabbithost
@@ -24,17 +37,9 @@ cd ~/mnesia/rabbit@rabbithost/msg_stores/vhosts/628WB79CIFDYO9LJI6DKMI09L/msg_st
 # 显示
 ls -l
 
-#查看RabbitMQ的日：
+#查看RabbitMQ的日志：
 cat /var/lib/rabbitmq/mnesia/rabbit@rabbithost/msg_stores/vhosts/628WB79CIFDYO9LJI6DKMI09L/recovery.dets
 ```
-
-### docker命令
-```bash
-docker start 5dac4d04d05d
-
-docker ps -a --format "table {{.ID}}   {{.Names}}   {{.Status}}"
-```
-
 
 
 ### rabbitmq ui

@@ -25,7 +25,7 @@ docker exec -it 5dac4d04d05d bash
 docker exec -it 5dac4d04d05d /bin/bash
 
 ```
-### 执行命令清除队列数据
+### 执行命令清除队列数据,这种方式不仅会清空消息，还会清空所有配置信息，需要谨慎使用
 ```bash
 #关闭应用
 docker exec -it 5dac4d04d05d rabbitmqctl  stop_app
@@ -36,6 +36,11 @@ docker exec -it 5dac4d04d05d  rabbitmqctl  start_app
 
 ## 合并执行
 docker exec -it 5dac4d04d05d rabbitmqctl  stop_app && docker exec -it 5dac4d04d05d rabbitmqctl  reset && docker exec -it 5dac4d04d05d  rabbitmqctl  start_app
+```
+
+### 根据 queue_name 参数，删除对应的队列
+```bash
+rabbitmqctl delete_queue queue_name
 ```
 
 ### 进入rabbitmq所在容器内部后,执行相关查看命令

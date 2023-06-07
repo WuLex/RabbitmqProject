@@ -20,8 +20,25 @@ docker ps -a --format "table {{.ID}}   {{.Names}}   {{.Status}}"
 
 #进入rabbitmq所在容器内部
 docker exec -it 5dac4d04d05d bash
+
+#同上
+docker exec -it 5dac4d04d05d /bin/bash
+
 ```
-### 进入rabbitmq所在容器内部,执行相关查看命令
+### 执行命令清除队列数据
+```bash
+#关闭应用
+docker exec -it 5dac4d04d05d rabbitmqctl  stop_app
+#清除队列中的消息
+docker exec -it 5dac4d04d05d rabbitmqctl  reset
+#再次启动此应用
+docker exec -it 5dac4d04d05d  rabbitmqctl  start_app
+
+## 合并执行
+docker exec -it 5dac4d04d05d rabbitmqctl  stop_app && docker exec -it 5dac4d04d05d rabbitmqctl  reset && docker exec -it 5dac4d04d05d  rabbitmqctl  start_app
+```
+
+### 进入rabbitmq所在容器内部后,执行相关查看命令
 ```bash
 
 #查看主机名rabbithost
